@@ -16,12 +16,9 @@ class App extends Component {
     axios.get('http://localhost:3000/books')
       .then((booklist) => {
         const books = booklist.data;
-        console.log('books object', books);
         this.setState({ books:books })
       })
   }
-
-
 
   render() {
 
