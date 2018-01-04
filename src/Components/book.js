@@ -25,7 +25,8 @@ class Book extends Component {
   saveBook = (event) => {
     event.preventDefault()
     const { title, author, genre } = this.state
-    axios.put('http://localhost:3000/books/edit/1', {title:title, author:author, genre:genre})
+    const id = this.props.id
+    axios.put(`http://localhost:3000/books/edit/${id}`, {title:title, author:author, genre:genre})
       .then((editedBook) => {
         console.log(editedBook);
         this.setState({
@@ -48,7 +49,7 @@ class Book extends Component {
 
     if (this.state.editMode) {
       book = (
-        <li>
+        <li key={this.props.id}>
           <form>
             <input type="text" name="title" onChange={this.handleChange} defaultValue={this.state.title} />
             <input type="text" name="author" onChange={this.handleChange} defaultValue={this.state.author} />
@@ -59,12 +60,12 @@ class Book extends Component {
       );
     } else {
       book = (
-        <li>
+        <li key={this.props.id}>
           {this.state.title}
           {this.state.author}
           {this.state.genre}
           <button onClick={this.editBook}>Edit</button>
-          <button onClick={this.deleteBook}>Delete</button>
+          <button onClick={this.props.click}>Delete</button>
         </li>
       )
     }

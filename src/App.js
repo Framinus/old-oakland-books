@@ -20,6 +20,18 @@ class App extends Component {
       })
   }
 
+  deleteBook = (id, index) => {
+    const self = this;
+    axios.delete(`http://localhost:3000/books/delete/${id}`)
+      .then(function(deleted) {
+        const books = [...self.state.books];
+        books.splice(index, 1);
+        self.setState({
+          books: books
+        })
+      })
+  }
+
   render() {
 
     return (
@@ -28,7 +40,9 @@ class App extends Component {
         <ul>
           {this.state.books.map((book, index) =>
             <Book
+              click={() => this.deleteBook(book.id, index)}
               key={book.id}
+              id={book.id}
               title={book.title}
               author={book.author}
               genre={book.genre}
