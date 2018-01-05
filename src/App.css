@@ -3,6 +3,8 @@ li {
 }
 
 button {
+  cursor: pointer;
+  font-weight: bold;
   margin: 2px 5px;
 }
 
@@ -10,16 +12,103 @@ span {
   margin: 2px 5px;
 }
 
+label {
+  font-size: 12px;
+}
+
 .App {
   background-image: url('https://static.boredpanda.com/blog/wp-content/uploads/2015/09/the-klementinum-national-library-czech-republic-2.jpg');
   background-size: cover;
   height: 100vh;
+  width: 100vw;
+  position: absolute;
+}
+
+.grand-title {
+  color: #fff;
+  font-family: 'Spectral SC', serif;
+  font-size: 48px;
+  margin-top: 50px;
+  text-align: center;
 }
 
 .book-row {
   align-items: center;
+  background-color: rgba(213, 219, 219, 0.75);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+  margin: 5px;
   padding: 10px;
+}
+
+.book-btns {
+  margin-left: auto;
+}
+
+.controls-container {
+  background-color: rgba(213, 219, 219, 0.75);
+  margin: 50px 25px;
+  padding: 20px 30px;
+  position: relative;
+}
+
+.booklist-container {
+  margin: 20px;
+  padding: 20px;
+}
+
+#edit-btn {
+  background-color: rgb(76, 86, 100);
+  border-radius: 5px;
+  color: #fff;
+  height: 25px;
+  width: 80px;
+}
+
+#delete-btn {
+  background-color: rgb(97, 35, 26);
+  border-radius: 5px;
+  color: #fff;
+  height: 25px;
+  width: 80px;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.radio-btns {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.btn-and-label {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-field {
+  float: left;
+  font-size: 20px;
+  height: 40px;
+  width: 60%;
+}
+
+.search-btn {
+  background-color: rgb(218, 170, 63);
+  border-radius: 5px;
+  height: 25px;
+  width: 80px;
+}
+
+.open-create-btn {
+  background-color: rgb(59, 74, 53);
+  color: #fff;
+  height: 25px;
+  margin: 20px 5px 10px 5px;
+  width: 100%;
 }

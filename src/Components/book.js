@@ -61,12 +61,14 @@ class Book extends Component {
       );
     } else {
       book = (
-        <li key={this.props.id}>
-          <span>{this.state.title}</span>
-          <span>{this.state.author}</span>
-          <span>{this.state.genre}</span>
-          <button onClick={this.editBook}>Edit</button>
-          <button onClick={this.props.click}>Delete</button>
+        <li className="book-row" key={this.props.id}>
+          <span>title: {this.state.title}</span>
+          <span>author: {this.state.author}</span>
+          <span>genre: {this.state.genre}</span>
+          <span className="book-btns">
+            <button id="edit-btn" onClick={this.editBook}>Edit</button>
+            <button id="delete-btn" onClick={this.props.click}>Delete</button>
+          </span>
         </li>
       )
     }

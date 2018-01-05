@@ -106,7 +106,7 @@ class App extends Component {
 
     if (!this.state.create) {
       createForm = (
-        <button onClick={this.openForm.bind(this)}>Create a Book!</button>
+        <button className="open-create-btn" onClick={this.openForm.bind(this)}>Create a Book!</button>
       );
     } else {
       createForm = (
@@ -125,31 +125,47 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Books!</h1>
-          {createForm}
-          {showList}
-          <form>
-            <input type="text" name="search" onChange={this.handleChange} value={this.state.search}/>
-            <input type="radio" id="title-choice" name="radioValue"   onChange={this.handleChange} value="title" checked={this.state.radioValue === 'title'} />
-            <label htmlFor="title-choice">By Title</label>
-            <input type="radio" id="title-choice" name="radioValue" onChange={this.handleChange} value="author" checked={this.state.radioValue === 'author'}/>
-            <label htmlFor="title-choice">By Author</label>
-            <input type="radio" id="title-choice" name="radioValue" onChange={this.handleChange} value="genre" checked={this.state.radioValue ==='genre'}/>
-            <label htmlFor="title-choice">By Genre</label>
-            <button onClick={this.searchBooks} type="submit">Search</button>
-          </form>
+        <p className="grand-title">Fancy Bookstore</p>
         <ul>
-          {this.state.books.map((book, index) =>
-            <Book
-              click={() => this.deleteBook(book.id, index)}
-              key={book.id}
-              id={book.id}
-              title={book.title}
-              author={book.author}
-              genre={book.genre}
-            />
-          )}
+          <li className="controls-container">
+              {showList}
+              <form className="search-form">
+                <input className="search-field" type="text" name="search" onChange={this.handleChange} value={this.state.search}/>
+                <span className="radio-btns">
+                  <span className="btn-and-label">
+                    <input type="radio" id="title-choice" name="radioValue"   onChange={this.handleChange} value="title" checked={this.state.radioValue === 'title'} />
+                    <label htmlFor="title-choice">By Title</label>
+                  </span>
+                  <span className="btn-and-label">
+                    <input type="radio" id="title-choice" name="radioValue" onChange={this.handleChange} value="author" checked={this.state.radioValue === 'author'}/>
+                    <label htmlFor="title-choice">By Author</label>
+                  </span>
+                  <span className="btn-and-label">
+                    <input type="radio" id="title-choice" name="radioValue" onChange={this.handleChange} value="genre" checked={this.state.radioValue ==='genre'}/>
+                    <label htmlFor="title-choice">By Genre</label>
+                  </span>
+                </span>
+                <span>
+                  <button className="search-btn" onClick={this.searchBooks} type="submit">Search</button>
+                </span>
+              </form>
+              {createForm}
+          </li>
         </ul>
+        <div className="booklist-container">
+          <ul>
+            {this.state.books.map((book, index) =>
+              <Book
+                click={() => this.deleteBook(book.id, index)}
+                key={book.id}
+                id={book.id}
+                title={book.title}
+                author={book.author}
+                genre={book.genre}
+              />
+            )}
+          </ul>
+        </div>
       </div>
     );
   }
