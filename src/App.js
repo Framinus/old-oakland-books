@@ -15,7 +15,7 @@ class App extends Component {
       create: false,
       search: '',
       showListBtn: false,
-      radioValue: ''
+      radioValue: false,
     };
   }
 
@@ -68,10 +68,8 @@ class App extends Component {
   handleChange = (event) => {
     const target = event.target;
     const search = target.name;
-    const radioValue = target.name;
     this.setState({
       [search]: event.target.value,
-      [radioValue]: event.target.value
     })
     console.log('event target value', event.target.value);
     console.log('search', search)
@@ -84,17 +82,20 @@ class App extends Component {
     const { search } = this.state
     const { radioValue } = this.state
     console.log('radioValue', radioValue);
-    axios.post(`http://localhost:3000/books/search/title`, { search })
+    axios.post(`http://localhost:3000/books/search/${radioValue}`, { search })
       .then((searchResults) => {
         const matches = searchResults.data.map((result) => {
           return this.state.books.filter((book) => {
             return book.id === result.id;
           })
         })
+        console.log('this state books', this.state.books);
         this.setState({
           books: matches[0],
           search: '',
-          showListBtn: true
+          showListBtn: true,
+          radioValue: false,
+          radioBtnChecked: false
         })
       })
   }
@@ -129,8 +130,12 @@ class App extends Component {
           {showList}
           <form>
             <input type="text" name="search" onChange={this.handleChange} value={this.state.search}/>
-            <input type="radio" id="title-choice" name="radioValue" onChange={this.handleChange} value="title"/>
+            <input type="radio" id="title-choice" name="radioValue"   onChange={this.handleChange} value="title" checked={this.state.radioValue === 'title'} />
             <label htmlFor="title-choice">By Title</label>
+            <input type="radio" id="title-choice" name="radioValue" onChange={this.handleChange} value="author" checked={this.state.radioValue === 'author'}/>
+            <label htmlFor="title-choice">By Author</label>
+            <input type="radio" id="title-choice" name="radioValue" onChange={this.handleChange} value="genre" checked={this.state.radioValue ==='genre'}/>
+            <label htmlFor="title-choice">By Genre</label>
             <button onClick={this.searchBooks} type="submit">Search</button>
           </form>
         <ul>

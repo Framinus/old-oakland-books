@@ -11,7 +11,9 @@ span {
 }
 
 .App {
-  text-align: center;
+  background-image: url('https://static.boredpanda.com/blog/wp-content/uploads/2015/09/the-klementinum-national-library-czech-republic-2.jpg');
+  background-size: cover;
+  height: 100vh;
 }
 
 .book-row {
