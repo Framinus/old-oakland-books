@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import '../App.css';
 
 class Book extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class Book extends Component {
 
     if (this.state.editMode) {
       book = (
-        <li key={this.props.id}>
+        <li key={this.props.id} className="book-row">
           <form>
             <input type="text" name="title" onChange={this.handleChange} defaultValue={this.state.title} />
             <input type="text" name="author" onChange={this.handleChange} defaultValue={this.state.author} />
@@ -61,9 +62,9 @@ class Book extends Component {
     } else {
       book = (
         <li key={this.props.id}>
-          {this.state.title}
-          {this.state.author}
-          {this.state.genre}
+          <span>{this.state.title}</span>
+          <span>{this.state.author}</span>
+          <span>{this.state.genre}</span>
           <button onClick={this.editBook}>Edit</button>
           <button onClick={this.props.click}>Delete</button>
         </li>

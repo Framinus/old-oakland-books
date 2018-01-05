@@ -8,18 +8,28 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.handleChange = this.handleChange.bind(this)
+
     this.state = {
       books: [],
-      create: false
+      create: false,
+      search: '',
+      showListBtn: false,
+      radioValue: ''
     };
   }
 
   componentWillMount() {
+    this.showAllBooks()
+  }
+
+  showAllBooks() {
     axios.get('http://localhost:3000/books')
       .then((booklist) => {
         const books = booklist.data;
         this.setState({
-          books:books
+          books:books,
+          showListBtn: false
          })
         console.log(this.state.books);
       })
@@ -55,12 +65,45 @@ class App extends Component {
       })
   }
 
+  handleChange = (event) => {
+    const target = event.target;
+    const search = target.name;
+    const radioValue = target.name;
+    this.setState({
+      [search]: event.target.value,
+      [radioValue]: event.target.value
+    })
+    console.log('event target value', event.target.value);
+    console.log('search', search)
+    // console.log('this state search', this.state.search);
+    console.log('this state radioValue', this.state.radioValue);
+  }
+
+  searchBooks = (event) => {
+    event.preventDefault()
+    const { search } = this.state
+    const { radioValue } = this.state
+    console.log('radioValue', radioValue);
+    axios.post(`http://localhost:3000/books/search/title`, { search })
+      .then((searchResults) => {
+        const matches = searchResults.data.map((result) => {
+          return this.state.books.filter((book) => {
+            return book.id === result.id;
+          })
+        })
+        this.setState({
+          books: matches[0],
+          search: '',
+          showListBtn: true
+        })
+      })
+  }
+
   render() {
 
     let createForm
 
     if (!this.state.create) {
-      console.log('this state create', this.state.create);
       createForm = (
         <button onClick={this.openForm.bind(this)}>Create a Book!</button>
       );
@@ -70,11 +113,26 @@ class App extends Component {
       )
     }
 
+    let showList
+
+    if (this.state.showListBtn) {
+      showList = (
+        <button type="submit" onClick={this.showAllBooks.bind(this)}>Show Full List</button>
+      )
+    }
+
 
     return (
       <div className="App">
         <h1>Books!</h1>
           {createForm}
+          {showList}
+          <form>
+            <input type="text" name="search" onChange={this.handleChange} value={this.state.search}/>
+            <input type="radio" id="title-choice" name="radioValue" onChange={this.handleChange} value="title"/>
+            <label htmlFor="title-choice">By Title</label>
+            <button onClick={this.searchBooks} type="submit">Search</button>
+          </form>
         <ul>
           {this.state.books.map((book, index) =>
             <Book

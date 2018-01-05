@@ -19,7 +19,6 @@ class Create extends Component {
     const { title, author, genre } = this.state
     axios.post(`http://localhost:3000/books/create`, {title:title, author:author, genre:genre})
     .then((newBook) => {
-      console.log('new book', newBook);
       this.props.books.push(newBook.data)
       this.props.addBook(this.props.books)
       this.props.closeCreateForm()
