@@ -12,6 +12,8 @@ class App extends Component {
 
     this.state = {
       books: [],
+      searchedBooks : [],
+      searchMode: false,
       create: false,
       search: '',
       showListBtn: false,
@@ -28,6 +30,7 @@ class App extends Component {
       .then((booklist) => {
         const books = booklist.data;
         this.setState({
+          searchMode: false,
           books:books,
           showListBtn: false
          })
@@ -91,7 +94,8 @@ class App extends Component {
         })
         console.log('this state books', this.state.books);
         this.setState({
-          books: matches[0],
+          searchedBooks: matches[0],
+          searchMode: true,
           search: '',
           showListBtn: true,
           radioValue: false,
@@ -122,6 +126,39 @@ class App extends Component {
       )
     }
 
+    let bookList
+
+    if (this.state.searchMode) {
+      bookList = (
+      <ul>
+        {this.state.searchedBooks.map((book, index) =>
+          <Book
+            click={() => this.deleteBook(book.id, index)}
+            key={book.id}
+            id={book.id}
+            title={book.title}
+            author={book.author}
+            genre={book.genre}
+          />
+        )}
+      </ul>
+    )
+    } else {
+      bookList = (
+      <ul>
+        {this.state.books.map((book, index) =>
+          <Book
+            click={() => this.deleteBook(book.id, index)}
+            key={book.id}
+            id={book.id}
+            title={book.title}
+            author={book.author}
+            genre={book.genre}
+          />
+        )}
+      </ul>
+    )
+    }
 
     return (
       <div className="App">
@@ -153,18 +190,7 @@ class App extends Component {
           </li>
         </ul>
         <div className="booklist-container">
-          <ul>
-            {this.state.books.map((book, index) =>
-              <Book
-                click={() => this.deleteBook(book.id, index)}
-                key={book.id}
-                id={book.id}
-                title={book.title}
-                author={book.author}
-                genre={book.genre}
-              />
-            )}
-          </ul>
+          {bookList}
         </div>
       </div>
     );
