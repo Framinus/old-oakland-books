@@ -40,7 +40,7 @@ class Create extends Component {
           <input type="text" name="title" onChange={this.handleChange} placeholder="title"/>
           <input type="text" name="author" onChange={this.handleChange} placeholder="author"/>
           <input type="text" name="genre" onChange={this.handleChange} placeholder="genre"/>
-          <button onClick={this.createBook} type="submit">Hi</button>
+          <button onClick={this.createBook} type="submit">Save</button>
         </form>
       </div>
     );
