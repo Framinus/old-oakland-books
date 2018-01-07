@@ -34,7 +34,6 @@ class App extends Component {
           books:books,
           showListBtn: false
          })
-        console.log(this.state.books);
       })
   }
 
@@ -74,10 +73,6 @@ class App extends Component {
     this.setState({
       [search]: event.target.value,
     })
-    console.log('event target value', event.target.value);
-    console.log('search', search)
-    // console.log('this state search', this.state.search);
-    console.log('this state radioValue', this.state.radioValue);
   }
 
   searchBooks = (event) => {
@@ -92,9 +87,9 @@ class App extends Component {
             return book.id === result.id;
           })
         })
-        console.log('this state books', this.state.books);
+        
         this.setState({
-          searchedBooks: matches[0],
+          searchedBooks: matches[0] ? matches[0] : [],
           searchMode: true,
           search: '',
           showListBtn: true,
