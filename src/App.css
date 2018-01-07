@@ -38,7 +38,7 @@ label {
 
 .book-row {
   align-items: center;
-  background-color: rgba(213, 219, 219, 0.75);
+  background-color: rgba(213, 219, 219, 0.9);
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -48,6 +48,14 @@ label {
 
 .book-btns {
   margin-left: auto;
+}
+
+.book-title {
+  font-weight: bold;
+}
+
+.book-genre {
+  font-style: italic;
 }
 
 .controls-container {
