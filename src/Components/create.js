@@ -17,7 +17,7 @@ class Create extends Component {
   createBook(event) {
     event.preventDefault()
     const { title, author, genre } = this.state
-    axios.post(`http://localhost:3000/books/create`, {title:title, author:author, genre:genre})
+    axios.post(`https://simple-bookstore-api.herokuapp.com/books/create`, {title:title, author:author, genre:genre})
     .then((newBook) => {
       this.props.books.push(newBook.data)
       this.props.addBook(this.props.books)
