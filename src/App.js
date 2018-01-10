@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   showAllBooks() {
-    axios.get('http://localhost:3000/books')
+    axios.get('https://simple-bookstore-api.herokuapp.com/books')
       .then((booklist) => {
         const books = booklist.data;
         this.setState({
@@ -57,7 +57,7 @@ class App extends Component {
 
   deleteBook = (id, index) => {
     const self = this;
-    axios.delete(`http://localhost:3000/books/delete/${id}`)
+    axios.delete(`https://simple-bookstore-api.herokuapp.com/books/delete/${id}`)
       .then(function(deleted) {
         const books = [...self.state.books];
         books.splice(index, 1);
@@ -80,7 +80,7 @@ class App extends Component {
     const { search } = this.state
     const { radioValue } = this.state
     console.log('radioValue', radioValue);
-    axios.post(`http://localhost:3000/books/search/${radioValue}`, { search })
+    axios.post(`https://simple-bookstore-api.herokuapp.com/books/search/${radioValue}`, { search })
       .then((searchResults) => {
         const matches = searchResults.data.map((result) => {
           return this.state.books.filter((book) => {
