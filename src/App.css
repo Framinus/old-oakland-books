@@ -58,6 +58,12 @@ label {
   font-style: italic;
 }
 
+.create-book-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .controls-container {
   background-color: rgba(213, 219, 219, 0.75);
   margin: 50px 25px;
@@ -84,6 +90,33 @@ label {
   color: #fff;
   height: 25px;
   width: 80px;
+}
+
+.create-btn {
+  background-color: rgb(59, 74, 53);
+  border-radius: 5px;
+  color: #fff;
+  height: 25px;
+  width: 80px;
+}
+
+.go-back-btn {
+  background-color: rgb(97, 35, 26);
+  border-radius: 5px;
+  color: #fff;
+  height: 25px;
+  width: 80px;
+}
+
+.input-fields {
+  width: 65%;
+}
+
+.input-fields input {
+  height: 24px;
+  margin-right: 10px;
+  margin-top: 5px;
+  width: 150px;
 }
 
 .search-form {

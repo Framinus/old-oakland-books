@@ -25,6 +25,7 @@ class Create extends Component {
     })
   }
 
+
   handleChange = (event) => {
     const target = event.target;
     const name = target.name;
@@ -36,11 +37,16 @@ class Create extends Component {
   render () {
     return (
       <div>
-        <form>
+        <form className="create-book-form">
+        <div className="input-fields">
           <input type="text" name="title" onChange={this.handleChange} placeholder="title"/>
           <input type="text" name="author" onChange={this.handleChange} placeholder="author"/>
           <input type="text" name="genre" onChange={this.handleChange} placeholder="genre"/>
-          <button onClick={this.createBook} type="submit">Submit</button>
+        </div>
+        <div className="create-form-btns">
+          <button className="create-btn" onClick={this.createBook} type="submit">Submit</button>
+          <button className ="go-back-btn" onClick={this.props.closeCreateForm} type="button">Go Back</button>
+        </div>
 
         </form>
       </div>
