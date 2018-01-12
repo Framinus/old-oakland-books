@@ -46,9 +46,9 @@ label {
   padding: 10px;
 }
 
-.book-btns {
+/*.book-btns {
   margin-left: auto;
-}
+}*/
 
 .book-title {
   font-weight: bold;
@@ -63,6 +63,11 @@ label {
   flex-direction: row;
   justify-content: space-between;
 }
+
+/*.create-form-btns {
+  flex-grow: 1;
+  justify-content: flex-end;
+}*/
 
 .controls-container {
   background-color: rgba(213, 219, 219, 0.75);
@@ -108,20 +113,16 @@ label {
   width: 80px;
 }
 
-.input-fields {
-  width: 65%;
-}
-
 .input-fields input {
   height: 24px;
-  margin-right: 10px;
   margin-top: 5px;
-  width: 150px;
+  width: 180px;
 }
 
 .search-form {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .radio-btns {
@@ -131,16 +132,39 @@ label {
   justify-content: flex-start;
 }
 
+.btns-container, .create-form-btns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .btn-and-label {
   display: flex;
   flex-direction: row;
 }
 
 .search-field {
-  float: left;
-  font-size: 20px;
   height: 40px;
-  width: 60%;
+  width: 100%;
+}
+
+.search-field-container, .input-fields {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 2;
+  font-size: 20px;
+  justify-content: space-between;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.search-field-container {
+  margin-right: 15px;
+}
+
+.input-fields {
+  margin-right: 20px;
 }
 
 .search-btn {
@@ -156,4 +180,10 @@ label {
   height: 25px;
   margin: 20px 5px 10px 5px;
   width: 100%;
+}
+
+@media (min-width: 450px) {
+  .search-field-container {
+    margin-bottom: 20px;
+  }
 }

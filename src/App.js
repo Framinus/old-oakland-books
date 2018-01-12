@@ -162,24 +162,28 @@ class App extends Component {
           <li className="controls-container">
               {showList}
               <form className="search-form">
-                <input className="search-field" type="text" name="search" onChange={this.handleChange} value={this.state.search}/>
-                <span className="radio-btns">
-                  <span className="btn-and-label">
-                    <input type="radio" id="title-choice" name="radioValue"   onChange={this.handleChange} value="title" checked={this.state.radioValue === 'title'} />
-                    <label htmlFor="title-choice">By Title</label>
+                <div className="search-field-container">
+                  <input className="search-field" type="text" name="search" onChange={this.handleChange} value={this.state.search}/>
+                </div>
+                <div className="btns-container">
+                  <span className="radio-btns">
+                    <span className="btn-and-label">
+                      <input type="radio" id="title-choice" name="radioValue"   onChange={this.handleChange} value="title" checked={this.state.radioValue === 'title'} />
+                      <label htmlFor="title-choice">By Title</label>
+                    </span>
+                    <span className="btn-and-label">
+                      <input type="radio" id="title-choice" name="radioValue" onChange={this.handleChange} value="author" checked={this.state.radioValue === 'author'}/>
+                      <label htmlFor="title-choice">By Author</label>
+                    </span>
+                    <span className="btn-and-label">
+                      <input type="radio" id="title-choice" name="radioValue" onChange={this.handleChange} value="genre" checked={this.state.radioValue ==='genre'}/>
+                      <label htmlFor="title-choice">By Genre</label>
+                    </span>
                   </span>
-                  <span className="btn-and-label">
-                    <input type="radio" id="title-choice" name="radioValue" onChange={this.handleChange} value="author" checked={this.state.radioValue === 'author'}/>
-                    <label htmlFor="title-choice">By Author</label>
-                  </span>
-                  <span className="btn-and-label">
-                    <input type="radio" id="title-choice" name="radioValue" onChange={this.handleChange} value="genre" checked={this.state.radioValue ==='genre'}/>
-                    <label htmlFor="title-choice">By Genre</label>
-                  </span>
-                </span>
-                <span>
-                  <button className="search-btn" onClick={this.searchBooks} type="submit">Search</button>
-                </span>
+                    <span>
+                      <button className="search-btn" onClick={this.searchBooks} type="submit">Search</button>
+                    </span>
+                  </div>
               </form>
               {createForm}
           </li>
