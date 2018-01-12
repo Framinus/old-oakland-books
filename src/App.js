@@ -87,7 +87,7 @@ class App extends Component {
             return book.id === result.id;
           })
         })
-        
+
         this.setState({
           searchedBooks: matches[0] ? matches[0] : [],
           searchMode: true,
@@ -157,7 +157,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <p className="grand-title">Fancy Bookstore</p>
+        <p className="grand-title">Old Oakland Books</p>
         <ul>
           <li className="controls-container">
               {showList}
