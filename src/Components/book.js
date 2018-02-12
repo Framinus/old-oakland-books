@@ -29,7 +29,6 @@ class Book extends Component {
     const id = this.props.id
     axios.put(`https://simple-bookstore-api.herokuapp.com/books/edit/${id}`, {title:title, author:author, genre:genre})
       .then((editedBook) => {
-        console.log(editedBook);
         this.setState({
         editMode: false,
       })

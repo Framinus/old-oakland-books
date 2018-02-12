@@ -79,7 +79,6 @@ class App extends Component {
     event.preventDefault()
     const { search } = this.state
     const { radioValue } = this.state
-    console.log('radioValue', radioValue);
     axios.post(`https://simple-bookstore-api.herokuapp.com/books/search/${radioValue}`, { search })
       .then((searchResults) => {
         const matches = searchResults.data.map((result) => {
@@ -117,7 +116,7 @@ class App extends Component {
 
     if (this.state.showListBtn) {
       showList = (
-        <button type="submit" onClick={this.showAllBooks.bind(this)}>Show Full List</button>
+        <button type="submit" className="search-btn" onClick={this.showAllBooks.bind(this)}>Show Full List</button>
       )
     }
 
@@ -160,7 +159,6 @@ class App extends Component {
         <p className="grand-title">Old Oakland Books</p>
         <ul>
           <li className="controls-container">
-              {showList}
               <form className="search-form">
                 <div className="search-field-container">
                   <input className="search-field" type="text" name="search" onChange={this.handleChange} value={this.state.search}/>
@@ -180,9 +178,10 @@ class App extends Component {
                       <label htmlFor="title-choice">By Genre</label>
                     </span>
                   </span>
-                    <span>
+                    <div className="select-btn">
                       <button className="search-btn" onClick={this.searchBooks} type="submit">Search</button>
-                    </span>
+                      {showList}
+                    </div>
                   </div>
               </form>
               {createForm}
